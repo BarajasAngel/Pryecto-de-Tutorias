@@ -8,6 +8,10 @@ namespace Titulacion.Clases
 {
     public class General
     {
+        private static string boleta;
+
+        public string Boleta { get => boleta; set => boleta = value; }
+
         public static string cifrarDatos(string data)
         {
             if (!string.IsNullOrEmpty(data))

@@ -10,6 +10,7 @@ namespace Titulacion.Clases
         private bool tutoria;
 
         public bool Tutoria { get => tutoria; set => tutoria = value; }
+        General generic = new General();
 
         public int Validar(Usuarios userReci)
         {
@@ -26,6 +27,7 @@ namespace Titulacion.Clases
                     if (Convert.ToInt32(user.Tipo) == 2)
                     {
                         var alumn = db.Alumno.Where(x => x.IdUsuario == user.IdUsuario).First();
+                        generic.Boleta = user.User;
                         Tutoria = alumn.Tutoria;
                     }
                     return Convert.ToInt32(user.Tipo);
@@ -96,7 +98,7 @@ namespace Titulacion.Clases
                     inscrip.Folio = General.Folio(alm);
                     db.Inscripcion.Add(inscrip);
                     db.SaveChanges();
-                    return true;
+                     return true;
                 }
                 catch (Exception)
                 {
