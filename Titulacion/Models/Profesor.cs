@@ -23,7 +23,6 @@ namespace Titulacion.Models
         public string Correo { get; set; }
         public int HorasTotales { get; set; }
         public int HorasTutoria { get; set; }
-        public bool Visibilidad { get; set; }
 
         public virtual Usuarios IdUsuarioNavigation { get; set; }
         public virtual ICollection<Grupos> Grupos { get; set; }

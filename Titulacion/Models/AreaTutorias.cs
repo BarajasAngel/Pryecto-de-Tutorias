@@ -13,7 +13,6 @@ namespace Titulacion.Models
         public int IdUsuario { get; set; }
         public string NombreArea { get; set; }
         public string Administrador { get; set; }
-        public bool Visibilidad { get; set; }
 
         public virtual Usuarios IdUsuarioNavigation { get; set; }
     }

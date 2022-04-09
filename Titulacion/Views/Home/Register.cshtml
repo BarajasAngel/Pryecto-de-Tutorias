@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <form asp-action="Register" asp-controller="Home" method="post">
+        <label for="IdUsuario">Boleta: </label>
+        <input type="text" name="IdUsuario" />
+        <label for="Correo">Correo: </label>
+        <input type="email" name="Correo" required/>
+        <input type="submit" value="Registrar" />
+    </form>
+    @ViewBag.TodoFine
+</body>
+</html>

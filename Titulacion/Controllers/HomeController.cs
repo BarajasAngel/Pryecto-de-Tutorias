@@ -28,14 +28,28 @@ namespace Titulacion.Controllers
         {
             UsuarioCLS user = new UsuarioCLS();
 
-            if (user.Validar(userReci))
+            switch (user.Validar(userReci))
             {
-                return RedirectToAction("InicioAlumno","Sesiones");
+                case 0:
+                    return View();
+                case 1:
+                    return View();
+                case 2:
+                    return RedirectToAction("InicioAlumno", "Sesiones");
+                default:
+                    return View();
             }
-            else
-            {
-                return View();
-            }
+        }
+        [HttpGet]
+        public IActionResult Register() { 
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(string IdUsuario, string Correo)
+        {
+            UsuarioCLS user = new UsuarioCLS();
+            ViewBag.TodoFine = user.registro(IdUsuario, Correo);
+            return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

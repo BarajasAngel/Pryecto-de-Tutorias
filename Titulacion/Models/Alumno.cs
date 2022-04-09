@@ -22,7 +22,6 @@ namespace Titulacion.Models
         public string Correo { get; set; }
         public string Grupo { get; set; }
         public bool Tutoria { get; set; }
-        public bool Visibilidad { get; set; }
 
         public virtual Usuarios IdUsuarioNavigation { get; set; }
         public virtual ICollection<Inscripcion> Inscripcion { get; set; }

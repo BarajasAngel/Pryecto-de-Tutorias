@@ -20,6 +20,7 @@ namespace Titulacion.Models
         public string User { get; set; }
         public string Pass { get; set; }
         public decimal Tipo { get; set; }
+        public bool Visibilidad { get; set; }
 
         public virtual ICollection<Alumno> Alumno { get; set; }
         public virtual ICollection<AreaTutorias> AreaTutorias { get; set; }
