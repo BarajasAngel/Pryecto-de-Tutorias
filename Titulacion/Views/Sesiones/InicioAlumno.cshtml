@@ -1,7 +1,7 @@
 ﻿@{ ViewData["Title"] = "InicioAlumno"; }
 
 <h1>Bienvenido</h1>
-
+@if(@ViewBag.Tutoria){
 <table>
   <thead>
     <tr>
@@ -27,6 +27,14 @@
 >
   Solicitar Tutoria
 </button>
+}
+else
+{
+   <div>
+       Felicidades Tienes una tutoria inscrita
+   </div>
+}
+
 
 <!-- Modal -->
 <div
@@ -51,21 +59,29 @@
           aria-label="Close"
         ></button>
       </div>
-            <form>
+            <form asp-action="InicioAlumno" asp-controller="Sesiones" method="post">
       <div class="modal-body">
         <div class="container">          
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Boleta</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Coloca Tú Boleta Aquí">
+              <label for="IdUsuario" class="form-label">Boleta: </label>
+              <input type="text" class="form-control" name="IdUsuario" placeholder="Coloca Tú Boleta Aquí">
             </div>
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Escribe Tú Nombre Aquí">
+              <label for="Nombre" class="form-label">Nombre: </label>
+              <input type="text" class="form-control" id="Nombre" placeholder="Escribe Tú Nombre Aquí">
+            </div>
+             <div class="mb-3">
+              <label for="ApellidoPat" class="form-label">Apellido Paterno:</label>
+              <input type="text" class="form-control" id="ApellidoPat" placeholder="Escribe Tú Apellido Aquí">
+            </div>
+             <div class="mb-3">
+              <label for="ApellidoMat" class="form-label">Apellido Materno:</label>
+              <input type="text" class="form-control" id="ApellidoMat" placeholder="Escribe Tú Apellido Aquí">
             </div>
             <div class="mb-3">
               <label for="exampleDataList" class="form-label">Datalist example</label>
-                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-                <datalist id="datalistOptions">
+                <input class="form-control" list="listaProfesor" name="nomProfe" placeholder="Type to search...">
+                <datalist id="listaProfesor">
                      @foreach (Profesor item in Model) {                     
                        <option>@item.Nombre @item.ApellidoPat @item.ApellidoMat</option>                                            
                      }                  
@@ -81,7 +97,7 @@
         >
           Cerrar
         </button>
-        <button type="submit" class="btn btn-primary">Solicitar</button>
+        <button type="submit" class="btn btn-primary" >Solicitar</button>         
       </div>
       </form>
     </div>

@@ -13,7 +13,7 @@ namespace Titulacion.Models
         public int IdProfesor { get; set; }
         public int IdAlumno { get; set; }
         public DateTime Fecha { get; set; }
-        public int Folio { get; set; }
+        public string Folio { get; set; }
 
         public virtual Alumno IdAlumnoNavigation { get; set; }
         public virtual Profesor IdProfesorNavigation { get; set; }

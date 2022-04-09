@@ -40,7 +40,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<Alumno>(entity =>
             {
                 entity.HasKey(e => e.IdAlumno)
-                    .HasName("PK__Alumno__B996CB1200FEFF86");
+                    .HasName("PK__Alumno__B996CB12ACE987F7");
 
                 entity.Property(e => e.IdAlumno).HasColumnName("Id_Alumno");
 
@@ -78,7 +78,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<AreaTutorias>(entity =>
             {
                 entity.HasKey(e => e.IdArea)
-                    .HasName("PK__AreaTuto__9C42D7FE17A2C57B");
+                    .HasName("PK__AreaTuto__9C42D7FEAA893E07");
 
                 entity.Property(e => e.IdArea).HasColumnName("Id_Area");
 
@@ -102,7 +102,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<Grupos>(entity =>
             {
                 entity.HasKey(e => e.IdGrupo)
-                    .HasName("PK__Grupos__ACDDD9789643DA5C");
+                    .HasName("PK__Grupos__ACDDD9782CEF2824");
 
                 entity.Property(e => e.IdGrupo).HasColumnName("Id_Grupo");
 
@@ -122,11 +122,15 @@ namespace Titulacion.Models
             modelBuilder.Entity<Inscripcion>(entity =>
             {
                 entity.HasKey(e => e.IdInscripcion)
-                    .HasName("PK__Inscripc__C7E9D2F58467B5FC");
+                    .HasName("PK__Inscripc__C7E9D2F55EBF8FB7");
 
                 entity.Property(e => e.IdInscripcion).HasColumnName("Id_Inscripcion");
 
                 entity.Property(e => e.Fecha).HasColumnType("date");
+
+                entity.Property(e => e.Folio)
+                    .IsRequired()
+                    .HasMaxLength(11);
 
                 entity.Property(e => e.IdAlumno).HasColumnName("Id_Alumno");
 
@@ -148,7 +152,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<Profesor>(entity =>
             {
                 entity.HasKey(e => e.IdProfesor)
-                    .HasName("PK__Profesor__45D4152AD33DC1DA");
+                    .HasName("PK__Profesor__45D4152AC7645694");
 
                 entity.Property(e => e.IdProfesor).HasColumnName("Id_Profesor");
 
@@ -180,7 +184,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<Usuarios>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuarios__63C76BE2C8753F81");
+                    .HasName("PK__Usuarios__63C76BE2D2D114CD");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
 

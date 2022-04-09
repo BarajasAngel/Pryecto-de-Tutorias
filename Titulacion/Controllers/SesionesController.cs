@@ -13,9 +13,26 @@ namespace Titulacion.Controllers
     public class SesionesController : Controller
     {
         UsuarioCLS obj = new UsuarioCLS();
+        [HttpGet]
         public IActionResult InicioAlumno()
         {
-            List<Profesor> listaProfesor = obj.listaProfesores();            
+            List<Profesor> listaProfesor = obj.listaProfesores();
+            ViewBag.Tutoria = obj.Tutoria;
+            return View(listaProfesor);
+        }
+        [HttpPost]
+        public IActionResult InicioAlumno(string IdUsuario, string nomProfe)
+        {
+            ViewBag.Tutoria = obj.RegistrarTutor(IdUsuario, nomProfe);
+            List<Profesor> listaProfesor = obj.listaProfesores();
+            if (ViewBag.Tutoria)
+            {
+                ViewBag.Respuesta = "Todo Bien";
+            }
+            else
+            {
+                ViewBag.Respuesta = "Todo Mal";
+            }
             return View(listaProfesor);
         }
         public IActionResult TutoriasRegistradas() { 
