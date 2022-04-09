@@ -1,0 +1,109 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+@{
+    Layout = null;
+}
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container-formulario > form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 0.8rem;
+  height: 25rem;
+  width: 25rem;
+  font-size: 1.4rem;
+}
+
+.formulario > img {
+  place-self: center;
+  width: 5rem;
+  height: 5rem;
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 0.3rem;
+  -webkit-box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1.6rem;
+}
+.formulario > input {
+  font-size: 1rem;
+  height: 2.6rem;
+  margin: 1rem 0rem;
+  padding: 0.2rem 0rem;
+}
+.formulario > input:focus {
+  border: 1px solid #800000;
+}
+.formulario > input[type="submit"] {
+  place-self: center;
+  border-radius: 2rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  width: 80%;
+  background-color: #efefef;
+}
+.formulario > input[type="submit"]:hover {
+  background-color: #c9c9c9;
+  transition: all 0.2s ease-in;
+}
+.container-formulario {
+  display: flex;
+}
+.decoracion {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.8rem;
+}
+.decoracion > img {
+  width: 175px;
+  height: auto;
+}
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="container-formulario">
+        <form asp-action="Login" asp-controller="Home" class="formulario">
+          <img src="./img/usuario.png" alt="Imagen Principal" />
+          <label for="User">Usuario:</label>
+          <input type="text" name="User" placeholder="Coloca tú usuario aquí" />
+          <label for="Pass">Contraseña:</label>
+          <input
+            type="password"
+            name="Pass"
+            placeholder="Coloca tú contraseña aquí"
+          />
+          <input type="submit" value="Iniciar Sesión" />
+        </form>
+        <div class="decoracion">
+            <img src="./img/IPN.png" alt="">            
+        </div>
+      </div>      
+    </main>
+  </body>
+</html>

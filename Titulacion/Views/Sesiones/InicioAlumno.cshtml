@@ -1,0 +1,89 @@
+﻿@{ ViewData["Title"] = "InicioAlumno"; }
+
+<h1>Bienvenido</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Profesor</th>
+      <th>Horas de Tutoria</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (Profesor item in Model) {
+    <tr>
+      <td>@item.Nombre @item.ApellidoPat @item.ApellidoMat</td>
+      <td>@item.HorasTutoria</td>
+    </tr>
+    }
+  </tbody>
+</table>
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#staticBackdrop"
+>
+  Solicitar Tutoria
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          Solicitud de Tutoria
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+            <form>
+      <div class="modal-body">
+        <div class="container">          
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Boleta</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Coloca Tú Boleta Aquí">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Escribe Tú Nombre Aquí">
+            </div>
+            <div class="mb-3">
+              <label for="exampleDataList" class="form-label">Datalist example</label>
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                <datalist id="datalistOptions">
+                     @foreach (Profesor item in Model) {                     
+                       <option>@item.Nombre @item.ApellidoPat @item.ApellidoMat</option>                                            
+                     }                  
+                </datalist>
+            </div>               
+        </div>
+        </div>
+        <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cerrar
+        </button>
+        <button type="submit" class="btn btn-primary">Solicitar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
