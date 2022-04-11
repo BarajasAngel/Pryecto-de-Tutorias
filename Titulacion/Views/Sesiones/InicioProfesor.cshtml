@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "InicioProfesor";
+}
+
+<h1>Bienvenido profesor</h1>
+<!--
+    Tabla Alumnos
+-->
+<table>
+    <thead>
+        <tr>
+            <th>
+                Nombre:
+            </th>
+            <th>
+                Grupo:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)    
+        {
+            <tr>
+                <td>
+                    @item.Nombre @item.ApellidoPat @item.ApellidoMat
+                </td>
+                <td>
+                    @item.Grupo
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!--
+    Tabla Grupos
+-->
+@*<table>
+    <thead>
+        <tr>
+            <th>
+                Grupos
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Lista)
+        {
+            <tr>
+                <td>
+                    @item.Gropos
+                </td>   
+            </tr>
+        }       
+    </tbody>
+</table>*@
+

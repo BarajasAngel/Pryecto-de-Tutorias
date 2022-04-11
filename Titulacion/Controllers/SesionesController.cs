@@ -36,7 +36,6 @@ namespace Titulacion.Controllers
             }
             return View(listaProfesor);
         }
-
         [HttpPost]
         public IActionResult Comprobante() {
             ComprobanteCLS compro = new ComprobanteCLS();
@@ -44,8 +43,11 @@ namespace Titulacion.Controllers
             documento.Seek(0, SeekOrigin.Begin);
             return File(documento,"application/pdf");
         }
-        public IActionResult TutoriasRegistradas() { 
-            return View();
+        public IActionResult InicioProfesor() {
+            List<Alumno> alumno = obj.listaAlumnos();
+            ViewBag.Lista = obj.listaGrupos();
+            return View(alumno);
         }
+
     }
 }

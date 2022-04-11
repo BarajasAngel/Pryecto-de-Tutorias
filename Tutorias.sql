@@ -220,7 +220,11 @@ INSERT INTO Profesor VALUES(50, 'FERNANDO', 'MARTINEZ', 'SANCHEZ',null,'24', '12
 
 SELECT * FROM Alumno
 
+SELECT * FROM Profesor
+
 SELECT * FROM Usuarios
+
+SELECT * FROM Inscripcion
 
 SELECT A.Id_Alumno, A.Nombre, A.Apellido_Pat, A.Apellido_Mat, A.Grupo, U.[User],U.[Pass]
 FROM Usuarios as U

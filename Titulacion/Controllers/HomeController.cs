@@ -33,7 +33,7 @@ namespace Titulacion.Controllers
                 case 0:
                     return View();
                 case 1:
-                    return View();
+                    return RedirectToAction("InicioProfesor", "Sesiones");
                 case 2:
                     return RedirectToAction("InicioAlumno", "Sesiones");
                 default:

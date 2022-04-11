@@ -20,9 +20,14 @@ namespace Titulacion.Clases
                 try
                 {
                     var user = db.Usuarios.Where(x => x.User == userReci.User && x.Pass == pass).First();
+                   
                     if (!user.Visibilidad)
                     {
                         return -1;
+                    }
+                    if (Convert.ToInt32(user.Tipo) == 1)
+                    {
+                        generic.Boleta = user.User;
                     }
                     if (Convert.ToInt32(user.Tipo) == 2)
                     {
@@ -105,6 +110,29 @@ namespace Titulacion.Clases
                     return false;
                 }
             }
+        }
+        public List<Alumno> listaAlumnos() {
+            using (TutoriasContext db = new TutoriasContext())
+            {
+                var idProfesor = db.Usuarios.Where(x => x.User == generic.Boleta).First().IdUsuario;
+                var Profesor = db.Profesor.Where(x => x.IdUsuario == idProfesor).First().IdProfesor;
+                List<Inscripcion> inscri = db.Inscripcion.Where(x => x.IdProfesor == Profesor).ToList();
+                List<Alumno> alumnosRegistrados = new List<Alumno>();
+                Alumno alumno = new Alumno();
+                for (int i = 0; i < inscri.Count; i++)
+                {
+                    var alm = db.Alumno.Where(x => x.IdAlumno == inscri[i].IdAlumno).First();
+                    alumno.Nombre = alm.Nombre;
+                    alumno.ApellidoPat = alm.ApellidoPat;
+                    alumno.ApellidoMat = alm.ApellidoMat;
+                    alumno.Grupo = alm.Grupo;
+                    alumnosRegistrados.Add(alumno);
+                }
+                return alumnosRegistrados;
+            }
+        }
+        public List<Grupos> listaGrupos() {
+            return null;
         }
     }
 }
