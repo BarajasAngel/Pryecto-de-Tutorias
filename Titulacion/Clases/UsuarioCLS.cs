@@ -7,7 +7,7 @@ namespace Titulacion.Clases
 {
     public class UsuarioCLS
     {
-        private bool tutoria;
+        private static bool tutoria;
 
         public bool Tutoria { get => tutoria; set => tutoria = value; }
         General generic = new General();

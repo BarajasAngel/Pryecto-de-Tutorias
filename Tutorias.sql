@@ -63,6 +63,7 @@ CREATE TABLE Grupos(
 Id_Grupo INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 Grupo NVARCHAR(6) NOT NULL,
 Id_Profesor INT NOT NULL,
+
 CONSTRAINT fk_Gropos_Profesor FOREIGN KEY(Id_Profesor) REFERENCES Profesor(Id_Profesor)
 )
 GO
@@ -231,3 +232,7 @@ FROM Usuarios as U
 INNER JOIN Alumno as A
 ON U.Id_Usuario = A.Id_Usuario;
 
+SELECT al.Nombre, al.Apellido_Mat, al.Apellido_Mat, al.Grupo
+FROM Inscripcion AS i
+INNER JOIN Alumno AS al
+ON al.Id_Alumno = i.Id_Alumno WHERE i.Id_Profesor = 5
