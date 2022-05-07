@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Titulacion.Clases;
+using Titulacion.Models;
+
 namespace Titulacion.Controllers
 {
     public class AdministradorController : Controller
@@ -7,6 +9,12 @@ namespace Titulacion.Controllers
         AdministradorCLS obj = new AdministradorCLS();
         [HttpGet]
         public IActionResult Alumnos() {            
+            return View(obj.MostrarALumnos());
+        }
+        [HttpPost]
+        public IActionResult Alumnos(Alumno alumno)
+        {
+            obj.ModificarAlumno(alumno);
             return View(obj.MostrarALumnos());
         }
         [HttpPost]

@@ -77,7 +77,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="Editarlabel">Editar infromacion del alumno</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
       </div>
         <div class="modal-body">
             <form asp-action="Alumnos" asp-controller="Administrador" method="post" id="frmEditar">
@@ -87,15 +87,15 @@
                 </div>
                 <div class="form-group">                
                     <label for="Nombre">Nombre: </label>
-                    <input type="text" id="txtNombre" name="Nombre" class="form-control"/>
+                    <input type="text" id="txtNombre" name="Nombre" class="form-control "style="text-transform:uppercase;"/>
                 </div>
                 <div class="form-group">
                     <label for="ApellidoPat">Apellido Paterno: </label>
-                    <input type="text" id="txtApellidoPat" name="ApellidoPat" class="form-control"/>
+                    <input type="text" id="txtApellidoPat" name="ApellidoPat" class="form-control" style="text-transform:uppercase;"/>
                 </div>
                     <div class="form-group">
                     <label for="ApellidoMat">Nombre: </label>
-                <input type="text" id="txtApellidoMat" name="ApellidoMat" class="form-control"/>
+                <input type="text" id="txtApellidoMat" name="ApellidoMat" class="form-control" style="text-transform:uppercase;"/>
                 </div>
                 <div class="form-group">
                     <label for="Correo">Correo: </label>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Grupo">Grupo: </label>
-                    <input type="text" id="txtGrupo" name="Grupo" class="form-control"/>
+                    <input type="text" id="txtGrupo" name="Grupo" class="form-control" style="text-transform:uppercase;"/>
                 </div>
             </form>
           </div>
@@ -131,13 +131,7 @@
         document.getElementById("txtGrupo").value = Grupo;
     }
     function Completado(){
-        document.getElementById("frmEditar").submit();
-        document.getElementById("txtidAlumno").value = "";
-        document.getElementById("txtNombre").value = "";
-        document.getElementById("txtApellidoPat").value = "";
-        document.getElementById("txtApellidoMat").value = "";
-        document.getElementById("txtCorreo").value = "";
-        document.getElementById("txtGrupo").value = "";
+        document.getElementById("frmEditar").submit();        
         swal("Good job!", "You clicked the button!", "success");
     }
     function ModalEliminar(IdAlumno){

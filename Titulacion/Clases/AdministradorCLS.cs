@@ -33,6 +33,27 @@ namespace Titulacion.Clases
                 return listaAlumnosVisibles;
             }
         }
+        public bool ModificarAlumno(Alumno alumno) {
+            try
+            {
+                using (TutoriasContext db = new TutoriasContext())
+                {
+                    Alumno oAlumno = db.Alumno.Where(x => x.IdAlumno == alumno.IdAlumno).First();
+                    oAlumno.Nombre = alumno.Nombre.ToUpper();
+                    oAlumno.ApellidoPat = alumno.ApellidoPat.ToUpper();
+                    oAlumno.ApellidoMat = alumno.ApellidoMat.ToUpper();
+                    oAlumno.Correo = alumno.Correo;
+                    oAlumno.Grupo = alumno.Grupo.ToUpper();
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
         public bool EliminarAlumno(int idAlumno) {
             using (TutoriasContext db = new TutoriasContext())
             {
