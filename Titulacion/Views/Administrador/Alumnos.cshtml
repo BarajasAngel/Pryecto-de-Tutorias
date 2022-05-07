@@ -44,7 +44,19 @@
                     }
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Editar">
+                    <button 
+                    type="button" 
+                    class="btn btn-primary" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#Editar" 
+                    onclick="Modificar(@item.IdAlumno,
+                                      '@item.Nombre',
+                                      '@item.ApellidoPat',
+                                      '@item.ApellidoMat',
+                                      '@item.Correo',
+                                      '@item.Grupo')"
+                    
+                    >
                         <i class="bi bi-pencil-square"></i>
                     </button>
                 </td>
@@ -64,16 +76,42 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Editarlabel">Editar</h5>
+        <h5 class="modal-title" id="Editarlabel">Editar infromacion del alumno</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
+        <div class="modal-body">
+            <form asp-action="Alumnos" asp-controller="Administrador" method="post" id="frmEditar">
+                <div class="form-group">
+                    <label for="idAlumno">Id del Alumno: </label>
+                    <input type="text" id="txtidAlumnoM" name="idAlumno" class="form-control" readonly />
+                </div>
+                <div class="form-group">                
+                    <label for="Nombre">Nombre: </label>
+                    <input type="text" id="txtNombre" name="Nombre" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="ApellidoPat">Apellido Paterno: </label>
+                    <input type="text" id="txtApellidoPat" name="ApellidoPat" class="form-control"/>
+                </div>
+                    <div class="form-group">
+                    <label for="ApellidoMat">Nombre: </label>
+                <input type="text" id="txtApellidoMat" name="ApellidoMat" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="Correo">Correo: </label>
+                    <input type="text" id="txtCorreo" name="Correo" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="Grupo">Grupo: </label>
+                    <input type="text" id="txtGrupo" name="Grupo" class="form-control"/>
+                </div>
+            </form>
+          </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="Completado()">Guardar Cambios</button>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+     
     </div>
   </div>
 </div>
@@ -83,6 +121,25 @@
 </form>
 
 <script>
+    function Modificar(idAlumnoM,Nombre,ApellidoPat,ApellidoMat,Correo,Grupo){
+        console.log("Hola");
+        document.getElementById("txtidAlumnoM").value = idAlumnoM;
+        document.getElementById("txtNombre").value = Nombre;
+        document.getElementById("txtApellidoPat").value = ApellidoPat;
+        document.getElementById("txtApellidoMat").value = ApellidoMat;
+        document.getElementById("txtCorreo").value = Correo;
+        document.getElementById("txtGrupo").value = Grupo;
+    }
+    function Completado(){
+        document.getElementById("frmEditar").submit();
+        document.getElementById("txtidAlumno").value = "";
+        document.getElementById("txtNombre").value = "";
+        document.getElementById("txtApellidoPat").value = "";
+        document.getElementById("txtApellidoMat").value = "";
+        document.getElementById("txtCorreo").value = "";
+        document.getElementById("txtGrupo").value = "";
+        swal("Good job!", "You clicked the button!", "success");
+    }
     function ModalEliminar(IdAlumno){
         swal({
           title: "¿Estas Seguro?",

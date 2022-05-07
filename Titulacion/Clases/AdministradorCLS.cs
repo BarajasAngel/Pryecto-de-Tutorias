@@ -133,7 +133,7 @@ namespace Titulacion.Clases
                 }
                 return listaInscripciones;
             }            
-        }
+        }        
     }
 }
 
