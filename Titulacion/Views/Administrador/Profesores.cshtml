@@ -39,7 +39,19 @@
                     @item.HorasTotales
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Editar">
+                    <button 
+                    type="button" 
+                    class="btn btn-primary" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#Editar"
+                    onclick="Modificar(@item.IdProfesor,
+                                      '@item.Nombre',
+                                      '@item.ApellidoPat',
+                                      '@item.ApellidoMat',
+                                      '@item.Correo',
+                                      '@item.HorasTutoria',
+                                      '@item.HorasTotales')"                    
+                    >
                         <i class="bi bi-pencil-square"></i>
                     </button>
                 </td>
@@ -62,7 +74,36 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <form asp-action="Profesores" asp-controller="Administrador" method="post" id="frmEditar">
+                <div class="form-group">
+                    <label for="idProfesor">Id del Alumno: </label>
+                    <input type="text" id="idProfesorM" name="idProfesor" class="form-control" readonly />
+                </div>
+                <div class="form-group">                
+                    <label for="Nombre">Nombre: </label>
+                    <input type="text" id="txtNombre" name="Nombre" class="form-control "style="text-transform:uppercase;"/>
+                </div>
+                <div class="form-group">
+                    <label for="ApellidoPat">Apellido Paterno: </label>
+                    <input type="text" id="txtApellidoPat" name="ApellidoPat" class="form-control" style="text-transform:uppercase;"/>
+                </div>
+                    <div class="form-group">
+                    <label for="ApellidoMat">Apellido Materno: </label>
+                <input type="text" id="txtApellidoMat" name="ApellidoMat" class="form-control" style="text-transform:uppercase;"/>
+                </div>
+                <div class="form-group">
+                    <label for="Correo">Correo: </label>
+                    <input type="text" id="txtCorreo" name="Correo" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="HorasTutoria">Horas de Tutoria: </label>
+                    <input type="text" id="txtHorasTutoria" name="HorasTutoria" class="form-control" style="text-transform:uppercase;"/>
+                </div>
+                <div class="form-group">
+                    <label for="HorasTotales">Horas de Totales: </label>
+                    <input type="text" id="txtHorasTotales" name="HorasTotales" class="form-control" style="text-transform:uppercase;"/>
+                </div>
+            </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -77,6 +118,19 @@
 </form>
 
 <script>
+    function Modificar(idAlumnoM,Nombre,ApellidoPat,ApellidoMat,Correo,HorasTutoria,HorasTotales){        
+        document.getElementById("idProfesorM").value = idAlumnoM;
+        document.getElementById("txtNombre").value = Nombre;
+        document.getElementById("txtApellidoPat").value = ApellidoPat;
+        document.getElementById("txtApellidoMat").value = ApellidoMat;
+        document.getElementById("txtCorreo").value = Correo;
+        document.getElementById("txtHorasTutoria").value = HorasTutoria;
+        document.getElementById("txtHorasTotales").value = HorasTotales;
+    }
+    function Completado(){
+        document.getElementById("frmEditar").submit();        
+        swal("Good job!", "You clicked the button!", "success");
+    }
     function ModalEliminar(idProfesor){
         swal({
           title: "¿Estas Seguro?",

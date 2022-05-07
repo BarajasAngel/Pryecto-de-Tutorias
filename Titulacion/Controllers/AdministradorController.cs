@@ -23,6 +23,7 @@ namespace Titulacion.Controllers
             obj.EliminarAlumno(int.Parse(idAlumno));
             return RedirectToAction("Alumnos");
         }
+        [HttpGet]
         public IActionResult Profesores() {
             return View(obj.MostrarProfesor());
         }
