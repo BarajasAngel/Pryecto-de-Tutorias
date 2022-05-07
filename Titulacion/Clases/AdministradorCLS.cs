@@ -102,6 +102,28 @@ namespace Titulacion.Clases
                 return listaProfesorVisibles;
             }
         }
+        public bool ModificarProfesor(Profesor profesor) {
+            try
+            {
+                using (TutoriasContext db = new TutoriasContext())
+                {
+                    Profesor oProfesor = db.Profesor.Where(x => x.IdProfesor == profesor.IdProfesor).First();
+                    oProfesor.Nombre = profesor.Nombre.ToUpper();
+                    oProfesor.ApellidoPat = profesor.ApellidoPat.ToUpper();
+                    oProfesor.ApellidoMat = profesor.ApellidoMat.ToUpper();
+                    oProfesor.Correo = profesor.Correo;
+                    oProfesor.HorasTutoria = profesor.HorasTutoria;
+                    oProfesor.HorasTotales = profesor.HorasTotales;
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
         public bool EliminarProfesor(int idProfesor)
         {
             using (TutoriasContext db = new TutoriasContext())

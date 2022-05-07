@@ -28,11 +28,18 @@ namespace Titulacion.Controllers
             return View(obj.MostrarProfesor());
         }
         [HttpPost]
+        public IActionResult Profesores(Profesor profesor)
+        {
+            obj.ModificarProfesor(profesor);
+            return View(obj.MostrarProfesor());
+        }
+        [HttpPost]
         public IActionResult EliminarProfesor(string idProfesor)
         {
             obj.EliminarProfesor(int.Parse(idProfesor));
             return RedirectToAction("Profesores");
         }
+        [HttpGet]
         public IActionResult Inscripciones() {
             return View(obj.MostrarInscripciones());
         }
