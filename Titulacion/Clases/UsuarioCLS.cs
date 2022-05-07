@@ -8,8 +8,11 @@ namespace Titulacion.Clases
     public class UsuarioCLS
     {
         private static bool tutoria;
+        private static string nombre;        
 
         public bool Tutoria { get => tutoria; set => tutoria = value; }
+        public string Nombre { get => nombre; set => nombre = value; }        
+
         General generic = new General();
 
         public int Validar(Usuarios userReci)
@@ -27,12 +30,13 @@ namespace Titulacion.Clases
                     }
                     if (Convert.ToInt32(user.Tipo) == 1)
                     {
-                        generic.Boleta = user.User;
+                        generic.Boleta = user.User;                        
                     }
                     if (Convert.ToInt32(user.Tipo) == 2)
                     {
                         var alumn = db.Alumno.Where(x => x.IdUsuario == user.IdUsuario).First();
                         generic.Boleta = user.User;
+                        Nombre = alumn.Nombre + " " + alumn.ApellidoPat + " " + alumn.ApellidoMat;
                         Tutoria = alumn.Tutoria;
                     }
                     return Convert.ToInt32(user.Tipo);

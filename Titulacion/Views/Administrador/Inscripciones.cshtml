@@ -45,12 +45,12 @@
                     @item.Folio
                 </td>
                 <td>
-                    <button class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Editar">
                         <i class="bi bi-pencil-square"></i>
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-danger">
+                    <button type="button" class="btn btn-danger" onclick="Modal()">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>
@@ -58,3 +58,43 @@
         }
     </tbody>
 </table>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="Editar" tabindex="-1" aria-labelledby="Editar" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Editarlabel">Editar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function Modal(){
+swal({
+  title: "¿Estas Seguro?",
+  text: "Una vez eliminado se necesitara registrar de nuevo el usuario",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! El registro ha sido elimimado", {
+      icon: "success",
+    });
+  } else {
+    swal("El registro se ha salvado :3");
+  }
+});
+}
+</script>

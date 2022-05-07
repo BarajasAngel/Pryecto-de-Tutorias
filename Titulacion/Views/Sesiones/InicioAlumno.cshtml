@@ -67,23 +67,15 @@ else
         <div class="container">          
             <div class="mb-3">
               <label for="IdUsuario" class="form-label">Boleta: </label>
-              <input type="text" class="form-control" name="IdUsuario" placeholder="Coloca Tú Boleta Aquí">
+              <input type="text" class="form-control" name="IdUsuario" value="@ViewBag.Boleta" readonly>
             </div>
             <div class="mb-3">
               <label for="Nombre" class="form-label">Nombre: </label>
-              <input type="text" class="form-control" id="Nombre" placeholder="Escribe Tú Nombre Aquí">
-            </div>
-             <div class="mb-3">
-              <label for="ApellidoPat" class="form-label">Apellido Paterno:</label>
-              <input type="text" class="form-control" id="ApellidoPat" placeholder="Escribe Tú Apellido Aquí">
-            </div>
-             <div class="mb-3">
-              <label for="ApellidoMat" class="form-label">Apellido Materno:</label>
-              <input type="text" class="form-control" id="ApellidoMat" placeholder="Escribe Tú Apellido Aquí">
-            </div>
+              <input type="text" class="form-control" id="Nombre" value="@ViewBag.Nombre" readonly>
+            </div>            
             <div class="mb-3">
               <label for="exampleDataList" class="form-label">Datalist example</label>
-                <input class="form-control" list="listaProfesor" name="nomProfe" placeholder="Type to search...">
+                <input class="form-control" list="listaProfesor" name="nomProfe" placeholder="Escribe tu busqueda...">
                 <datalist id="listaProfesor">
                      @foreach (Profesor item in Model) {                     
                        <option>@item.Nombre @item.ApellidoPat @item.ApellidoMat</option>                                            

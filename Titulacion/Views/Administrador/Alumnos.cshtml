@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Alumnos";
     Layout = "~/Views/Shared/_LayaoutAdmin.cshtml";
 }
@@ -9,11 +8,11 @@
 <table id="myTable" class="table table-striped table-hover" >
     <thead >
         <tr class="thead-pantone">
+            <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Grupo</th>
-            <th>Tutoria</th>
-            <th>Alta</th>
+            <th>Tutoria</th>            
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -22,6 +21,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @item.IdAlumno
+                </td>
                 <td>
                     @item.ApellidoPat @item.ApellidoMat @item.Nombre
                 </td>
@@ -42,22 +44,12 @@
                     }
                 </td>
                 <td>
-                    @if (@item.Correo != null)
-                    {
-                       <div>SI</div> 
-                    }
-                    else
-                    {
-                       <div>NO</div> 
-                    }
-                </td>
-                <td>
-                    <button class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Editar">
                         <i class="bi bi-pencil-square"></i>
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-danger">
+                    <button type="button" class="btn btn-danger" onclick="ModalEliminar(@item.IdAlumno)">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>
@@ -65,3 +57,50 @@
         }
     </tbody>
 </table>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="Editar" tabindex="-1" aria-labelledby="Editar" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Editarlabel">Editar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form asp-action="EliminarAlumno" asp-controller="Administrador" method="post" id="frmEliminar">
+    <input type="hidden" value="" id="txtidAlumno" name="idAlumno"/>
+</form>
+
+<script>
+    function ModalEliminar(IdAlumno){
+        swal({
+          title: "¿Estas Seguro?",
+          text: "Una vez eliminado se necesitara registrar de nuevo el usuario",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+              document.getElementById("txtidAlumno").value = IdAlumno;
+              document.getElementById("frmEliminar").submit();
+            swal("Poof! El registro ha sido elimimado", {
+              icon: "success",
+            });
+          } else {
+            swal("El registro se ha salvado :3");
+          }
+        });
+    }
+</script>

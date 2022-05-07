@@ -31,7 +31,7 @@ namespace Titulacion.Controllers
             switch (user.Validar(userReci))
             {
                 case 0:
-                    return View();
+                    return RedirectToAction("Alumnos", "Administrador");                    
                 case 1:
                     return RedirectToAction("InicioProfesor", "Sesiones");
                 case 2:
