@@ -11,7 +11,6 @@ namespace Titulacion.Models
     {
         public Profesor()
         {
-            Grupos = new HashSet<Grupos>();
             Inscripcion = new HashSet<Inscripcion>();
         }
 
@@ -25,7 +24,6 @@ namespace Titulacion.Models
         public int HorasTutoria { get; set; }
 
         public virtual Usuarios IdUsuarioNavigation { get; set; }
-        public virtual ICollection<Grupos> Grupos { get; set; }
         public virtual ICollection<Inscripcion> Inscripcion { get; set; }
     }
 }

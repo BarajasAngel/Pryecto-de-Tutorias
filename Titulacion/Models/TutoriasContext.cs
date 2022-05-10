@@ -24,6 +24,7 @@ namespace Titulacion.Models
         public virtual DbSet<Grupos> Grupos { get; set; }
         public virtual DbSet<Inscripcion> Inscripcion { get; set; }
         public virtual DbSet<Profesor> Profesor { get; set; }
+        public virtual DbSet<RelacionGrupos> RelacionGrupos { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,7 +41,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<Alumno>(entity =>
             {
                 entity.HasKey(e => e.IdAlumno)
-                    .HasName("PK__Alumno__B996CB12ACE987F7");
+                    .HasName("PK__Alumno__B996CB12609D4381");
 
                 entity.Property(e => e.IdAlumno).HasColumnName("Id_Alumno");
 
@@ -55,10 +56,6 @@ namespace Titulacion.Models
                     .HasMaxLength(40);
 
                 entity.Property(e => e.Correo).HasMaxLength(30);
-
-                entity.Property(e => e.Grupo)
-                    .IsRequired()
-                    .HasMaxLength(6);
 
                 entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
 
@@ -78,7 +75,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<AreaTutorias>(entity =>
             {
                 entity.HasKey(e => e.IdArea)
-                    .HasName("PK__AreaTuto__9C42D7FEAA893E07");
+                    .HasName("PK__AreaTuto__9C42D7FED4EAC709");
 
                 entity.Property(e => e.IdArea).HasColumnName("Id_Area");
 
@@ -102,27 +99,19 @@ namespace Titulacion.Models
             modelBuilder.Entity<Grupos>(entity =>
             {
                 entity.HasKey(e => e.IdGrupo)
-                    .HasName("PK__Grupos__ACDDD9782CEF2824");
+                    .HasName("PK__Grupos__ACDDD978B65B95EF");
 
                 entity.Property(e => e.IdGrupo).HasColumnName("Id_Grupo");
 
                 entity.Property(e => e.Grupo)
                     .IsRequired()
                     .HasMaxLength(6);
-
-                entity.Property(e => e.IdProfesor).HasColumnName("Id_Profesor");
-
-                entity.HasOne(d => d.IdProfesorNavigation)
-                    .WithMany(p => p.Grupos)
-                    .HasForeignKey(d => d.IdProfesor)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Gropos_Profesor");
             });
 
             modelBuilder.Entity<Inscripcion>(entity =>
             {
                 entity.HasKey(e => e.IdInscripcion)
-                    .HasName("PK__Inscripc__C7E9D2F55EBF8FB7");
+                    .HasName("PK__Inscripc__C7E9D2F56CFB2BAA");
 
                 entity.Property(e => e.IdInscripcion).HasColumnName("Id_Inscripcion");
 
@@ -152,7 +141,7 @@ namespace Titulacion.Models
             modelBuilder.Entity<Profesor>(entity =>
             {
                 entity.HasKey(e => e.IdProfesor)
-                    .HasName("PK__Profesor__45D4152AC7645694");
+                    .HasName("PK__Profesor__45D4152ABC5B5204");
 
                 entity.Property(e => e.IdProfesor).HasColumnName("Id_Profesor");
 
@@ -181,10 +170,34 @@ namespace Titulacion.Models
                     .HasConstraintName("fk_Usuario_Profesor");
             });
 
+            modelBuilder.Entity<RelacionGrupos>(entity =>
+            {
+                entity.HasKey(e => e.IdRelacion)
+                    .HasName("PK__Relacion__2225CC092A8E8540");
+
+                entity.Property(e => e.IdRelacion).HasColumnName("Id_Relacion");
+
+                entity.Property(e => e.IdGrupo).HasColumnName("Id_Grupo");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
+
+                entity.HasOne(d => d.IdGrupoNavigation)
+                    .WithMany(p => p.RelacionGrupos)
+                    .HasForeignKey(d => d.IdGrupo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Grupos");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.RelacionGrupos)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Relacion");
+            });
+
             modelBuilder.Entity<Usuarios>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuarios__63C76BE2D2D114CD");
+                    .HasName("PK__Usuarios__63C76BE209C5623E");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
 

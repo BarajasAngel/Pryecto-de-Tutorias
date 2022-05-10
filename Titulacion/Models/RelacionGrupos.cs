@@ -7,16 +7,13 @@ using System.Collections.Generic;
 
 namespace Titulacion.Models
 {
-    public partial class Grupos
+    public partial class RelacionGrupos
     {
-        public Grupos()
-        {
-            RelacionGrupos = new HashSet<RelacionGrupos>();
-        }
-
+        public int IdRelacion { get; set; }
+        public int IdUsuario { get; set; }
         public int IdGrupo { get; set; }
-        public string Grupo { get; set; }
 
-        public virtual ICollection<RelacionGrupos> RelacionGrupos { get; set; }
+        public virtual Grupos IdGrupoNavigation { get; set; }
+        public virtual Usuarios IdUsuarioNavigation { get; set; }
     }
 }
