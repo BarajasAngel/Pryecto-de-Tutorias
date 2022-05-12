@@ -1,9 +1,11 @@
-﻿@{ ViewData["Title"] = "InicioAlumno"; }
+﻿@{
+    Layout = "~/Views/Shared/_LayaoutAlumno.cshtml"; 
+}
 
 <h1>Bienvenido</h1>
 @if(!(@ViewBag.Tutoria)){
-<table>
-  <thead>
+<table id="myTable" class="table table-striped table-hover">
+  <thead class="thead-pantone">
     <tr>
       <th>Profesor</th>
       <th>Horas de Tutoria</th>

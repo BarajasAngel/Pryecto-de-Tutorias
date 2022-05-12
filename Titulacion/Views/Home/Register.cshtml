@@ -1,23 +1,106 @@
-﻿
-@{
-    Layout = null;
-}
-
+﻿@{ Layout = null; }
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+  </head>
+  <body>
+    <style>
+      body {
+        background-image: url(/img/Fondo.png);
+        background-size: cover;
+        backdrop-filter: blur(2px);
+      }
+      .container {
+        opacity: 0.9;
+      }
+    </style>
+    <main>
+      <section class="vh-100">
+        <div class="container py-5 h-100">
+          <div
+            class="row d-flex justify-content-center align-items-center h-100"
+          >
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card shadow-2-strong" style="border-radius: 1rem">
+                <div class="card-body p-5">
+                  <div class="text-center">
+                    <img
+                      src="~/img/email.png"
+                      alt="Imagen Principal"
+                      class="mb-4"
+                      width="125px"
+                      height="auto"
+                    />
+                  </div>
+                  <div class="text-center text-primary" style="font-size:24px">
+                      @ViewBag.TodoFine
+                  </div>
+                  <form
+                    asp-action="Register" 
+                    asp-controller="Home" 
+                    method="post"                                                            
+                  >
+                    <div class="mb-4">
+                      <label
+                        for="lblBoleta"
+                        class="col-form-label col-form-label-lg"
+                        >Boleta:</label
+                      >
+                      <input
+                        type="text"
+                        name="IdUsuario"
+                        id="lblBoleta"
+                        class="form-control form-control-lg"
+                        placeholder="Coloca tú Boleta aquí"
+                        required
+                      />                      
+                    </div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Register</title>
-</head>
-<body>
-    <form asp-action="Register" asp-controller="Home" method="post">
-        <label for="IdUsuario">Boleta: </label>
-        <input type="text" name="IdUsuario" />
-        <label for="Correo">Correo: </label>
-        <input type="email" name="Correo" required/>
-        <input type="submit" value="Registrar" />
-    </form>
-    @ViewBag.TodoFine
-</body>
+                    <div class="mb-4">
+                      <label
+                        for="lblCorreo"
+                        class="col-form-label col-form-label-lg"
+                        >Correo:</label
+                      >
+                      <input
+                        type="email"
+                        name="Correo"
+                        id="lblCorreo"
+                        placeholder="Coloca tú Correo aquí"
+                        class="form-control form-control-lg"
+                        required
+                      />                      
+                    </div>
+                    <div class="text-center">
+                      <div class="mb-4 mt-4">
+                        <a asp-action="Login" asp-controller="home"
+                          >Click Aquí para Iniciar Sesión</a>
+                      </div>
+                      <button
+                        class="btn btn-primary btn-lg btn-block"
+                        onclick="modal()"
+                        type="submit"                        
+                      >
+                        Registrarse
+                      </button>                      
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </body>
 </html>

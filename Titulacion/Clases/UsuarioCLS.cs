@@ -52,14 +52,17 @@ namespace Titulacion.Clases
         public List<Profesor> listaProfesores() {
             using (TutoriasContext db = new TutoriasContext())
             {
+                var getUser = db.Usuarios.Where(x => x.User == generic.Boleta).First();
+                var getGrupo = db.Alumno.Where(x => x.IdUsuario == getUser.IdUsuario).First().Grupo;
                 var listaProfesor = (from prof in db.Profesor
-                                 select new Profesor
-                                 {
-                                     Nombre = prof.Nombre,
-                                     ApellidoPat = prof.ApellidoPat,
-                                     ApellidoMat = prof.ApellidoMat,
-                                     HorasTutoria = prof.HorasTutoria,                                     
-                                 }).ToList();
+                                     where prof.Grupo == getGrupo
+                                    select new Profesor
+                                    {
+                                        Nombre = prof.Nombre,
+                                        ApellidoPat = prof.ApellidoPat,
+                                        ApellidoMat = prof.ApellidoMat,
+                                        HorasTutoria = prof.HorasTutoria,                                     
+                                    }).ToList();
                 return listaProfesor;
             }
             
@@ -70,12 +73,27 @@ namespace Titulacion.Clases
                 using (TutoriasContext db = new TutoriasContext())
                 {
                     var id = db.Usuarios.Where(x => x.User == boleta).First();
-                    var comprobar = db.Alumno.Where(x => x.IdUsuario == id.IdUsuario).First();
-                    comprobar.Correo = correo;
-                    id.Visibilidad = true;
-                    db.SaveChanges();
-                    CorreoCLS enviar = new CorreoCLS(correo);
-                    return enviar.smtpCorreo(); 
+                    var getAlumno = db.Alumno.Where(x => x.IdUsuario == id.IdUsuario).First();
+
+                    if (getAlumno.Correo != null)
+                    {
+                        return "Esta boleta ya cuenta con un correo asociado";
+                    }
+                    else {
+                        try
+                        {
+                            var getCorreo = db.Alumno.Where(x => x.Correo == correo).First();
+                            return "El correo ya esta asociado a otra boleta, por favor intenta otro";
+                        }
+                        catch (Exception)
+                        {
+                            getAlumno.Correo = correo;
+                            id.Visibilidad = true;
+                            db.SaveChanges();
+                            CorreoCLS enviar = new CorreoCLS(correo);
+                            return enviar.smtpCorreo();
+                        }
+                    }                                        
                 }
             }
             catch (Exception)

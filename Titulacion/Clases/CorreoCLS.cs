@@ -49,13 +49,13 @@ namespace Titulacion.Clases
         
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.Send(msg);
-                return "Mensaje Enviado correctamente";
+                return "Mensaje Enviado Correctamente";
         
             }
             catch (Exception)
             {
         
-                return "El mensaje no se mando correctamente";
+                return "Hubo un erro al intentar mandar el mensaje";
             }
         
         }        
