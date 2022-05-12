@@ -128,8 +128,7 @@ namespace Titulacion.Clases
                     var alm = db.Alumno.Where(x => x.IdAlumno == inscri[i].IdAlumno).First();
                     alumno.Nombre = alm.Nombre;
                     alumno.ApellidoPat = alm.ApellidoPat;
-                    alumno.ApellidoMat = alm.ApellidoMat;
-                    alumno.Grupo = alm.Grupo;
+                    alumno.ApellidoMat = alm.ApellidoMat;                    
                     alumnosRegistrados.Add(alumno);
                 }
                 return alumnosRegistrados;

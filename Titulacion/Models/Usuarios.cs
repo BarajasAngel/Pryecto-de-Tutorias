@@ -14,7 +14,6 @@ namespace Titulacion.Models
             Alumno = new HashSet<Alumno>();
             AreaTutorias = new HashSet<AreaTutorias>();
             Profesor = new HashSet<Profesor>();
-            RelacionGrupos = new HashSet<RelacionGrupos>();
         }
 
         public int IdUsuario { get; set; }
@@ -26,6 +25,5 @@ namespace Titulacion.Models
         public virtual ICollection<Alumno> Alumno { get; set; }
         public virtual ICollection<AreaTutorias> AreaTutorias { get; set; }
         public virtual ICollection<Profesor> Profesor { get; set; }
-        public virtual ICollection<RelacionGrupos> RelacionGrupos { get; set; }
     }
 }

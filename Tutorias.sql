@@ -20,6 +20,7 @@ Nombre NVARCHAR(50) NOT NULL,
 Apellido_Pat NVARCHAR(40) NOT NULL,
 Apellido_Mat NVARCHAR(40) NOT NULL,
 Correo NVARCHAR(30) NULL,
+Grupo NVARCHAR(6) NOT NULL,
 TUTORIA BIT NOT NULL,
 
 CONSTRAINT fk_Usuario_Alumno FOREIGN KEY(Id_Usuario) REFERENCES Usuarios(Id_Usuario)
@@ -40,6 +41,7 @@ Nombre NVARCHAR(50) NOT NULL,
 Apellido_Pat NVARCHAR(50) NOT NULL,
 Apellido_Mat NVARCHAR(50) NOT NULL,
 Correo NVARCHAR(50) NULL,	
+Grupo NVARCHAR(6) NOT NULL,
 HorasTotales INT NOT NULL,
 HorasTutoria INT NOT NULL,
 CONSTRAINT fk_Usuario_Profesor FOREIGN KEY(Id_Usuario) REFERENCES Usuarios(Id_Usuario)
@@ -55,22 +57,6 @@ Fecha DATE NOT NULL,
 Folio NVARCHAR(11) NOT NULL,
 CONSTRAINT fk_Alumno FOREIGN KEY(Id_Alumno) REFERENCES Alumno(Id_Alumno),
 CONSTRAINT fk_Profesor FOREIGN KEY(Id_Profesor) REFERENCES Profesor(Id_Profesor)
-);
-GO
-
-CREATE TABLE Grupos(
-Id_Grupo INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-Grupo NVARCHAR(6) NOT NULL
-);
-GO
-
-CREATE TABLE RelacionGrupos(
-Id_Relacion INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-Id_Usuario INT NOT NULL,
-Id_Grupo INT NOT NULL,
-
-CONSTRAINT fk_Relacion FOREIGN KEY(Id_Usuario) REFERENCES Usuarios(Id_Usuario),
-CONSTRAINT fk_Grupos FOREIGN KEY(Id_Grupo) REFERENCES Grupos(Id_Grupo)
 );
 GO
 

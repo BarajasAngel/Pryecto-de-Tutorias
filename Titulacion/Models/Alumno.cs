@@ -20,6 +20,7 @@ namespace Titulacion.Models
         public string ApellidoPat { get; set; }
         public string ApellidoMat { get; set; }
         public string Correo { get; set; }
+        public string Grupo { get; set; }
         public bool Tutoria { get; set; }
 
         public virtual Usuarios IdUsuarioNavigation { get; set; }
