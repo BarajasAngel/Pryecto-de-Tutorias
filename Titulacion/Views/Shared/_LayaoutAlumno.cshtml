@@ -16,6 +16,12 @@
     <title>Alumno</title>
 </head>
 <body>
+    <style>
+.thead-pantone{
+    background-color: #9b2242;
+    color: white;
+}
+</style>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
@@ -53,7 +59,10 @@
         window.onload = function() {
             $(document).ready( function () {
             $('#myTable').DataTable({
-                
+                    "searching": false,
+                    "lengthChange": false,
+                    "info": false,
+                    "paging": false
             });
             } );
         }
