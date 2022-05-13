@@ -21,13 +21,14 @@ namespace Titulacion.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.Bool = false;
             return View();
         }
         [HttpPost]
         public IActionResult Login(Usuarios userReci)
         {
             UsuarioCLS user = new UsuarioCLS();
-
+            
             switch (user.Validar(userReci))
             {
                 case 0:
@@ -37,18 +38,22 @@ namespace Titulacion.Controllers
                 case 2:
                     return RedirectToAction("InicioAlumno", "Sesiones");
                 default:
+                    ViewBag.Bool = true;
                     ViewBag.Error = "Tu usuario y/o contraseña son incorrectos";
                     return View();
             }
         }
+
         [HttpGet]
-        public IActionResult Register() { 
+        public IActionResult Register() {
+            ViewBag.Bool = false;
             return View();
         }
         [HttpPost]
         public IActionResult Register(string IdUsuario, string Correo)
         {
             UsuarioCLS user = new UsuarioCLS();
+            ViewBag.Bool = true;
             ViewBag.TodoFine = user.registro(IdUsuario, Correo);
             return View();
         }

@@ -29,7 +29,7 @@ namespace Titulacion.Controllers
         }
         [HttpPost]
         public IActionResult UpdatePassProfesor(string Usuario, string Pass) {
-            user.UpdatePassProfe(Usuario,Pass)
+            user.UpdatePassProfe(Usuario, Pass);
             return RedirectToAction("Profesor");
         }
     }
