@@ -7,7 +7,7 @@ namespace Titulacion.Controllers
     {
         General generic = new General();
         UsuarioCLS user = new UsuarioCLS();
-        
+        [HttpGet]
         public IActionResult Alumno()
         {            
             ViewBag.Boleta = generic.Boleta;
@@ -16,12 +16,21 @@ namespace Titulacion.Controllers
             ViewBag.Grupo = user.AlumnoConfig()[2];
             return View();
         }
+        [HttpPost]
         public IActionResult UpdatePassAlumno(string Boleta, string Pass) {
             user.UpdatePassAlumno(Boleta, Pass);
             return RedirectToAction("Alumno");
         }
+        [HttpGet]
         public IActionResult Profesor() {
+            ViewBag.Info = new UsuarioCLS().ProfeConfig();
+            ViewBag.Usuario = generic.Boleta;
             return View();
+        }
+        [HttpPost]
+        public IActionResult UpdatePassProfesor(string Usuario, string Pass) {
+            user.UpdatePassProfe(Usuario,Pass)
+            return RedirectToAction("Profesor");
         }
     }
 }

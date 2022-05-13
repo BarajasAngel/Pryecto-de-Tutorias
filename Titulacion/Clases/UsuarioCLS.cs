@@ -143,17 +143,12 @@ namespace Titulacion.Clases
                 Alumno alumno = new Alumno();
                 for (int i = 0; i < inscri.Count; i++)
                 {
-                    var alm = db.Alumno.Where(x => x.IdAlumno == inscri[i].IdAlumno).First();
-                    alumno.Nombre = alm.Nombre;
-                    alumno.ApellidoPat = alm.ApellidoPat;
-                    alumno.ApellidoMat = alm.ApellidoMat;
-                    alumno.Grupo = alm.Grupo;
-                    alumnosRegistrados.Add(alumno);
+                    var alm = db.Alumno.Where(x => x.IdAlumno == inscri[i].IdAlumno).First();          
+                    alumnosRegistrados.Add(alm);
                 }
                 return alumnosRegistrados;
             }
         }
-
         public string[] AlumnoConfig() {
             using (TutoriasContext db = new TutoriasContext()) {
                 var getAccount = db.Usuarios.Where(x => x.User == generic.Boleta).First();
@@ -177,6 +172,33 @@ namespace Titulacion.Clases
                 }
             }
         }
+        public string[] ProfeConfig() { 
+            using(TutoriasContext db = new TutoriasContext()){
+                var getAccount = db.Usuarios.Where(x => x.User == generic.Boleta).First();
+                var getProfesor = db.Profesor.Where(x => x.IdUsuario == getAccount.IdUsuario).First();
+                string[] info = { getProfesor.Nombre + " " + 
+                        getProfesor.ApellidoPat + " " + getProfesor.ApellidoMat, getProfesor.Correo,
+                        getProfesor.Grupo, getProfesor.HorasTutoria.ToString(), 
+                        getProfesor.HorasTotales.ToString()};
+                return info;
 
+            }
+        }
+        public string UpdatePassProfe(string Usuario, string Pass) {
+            using (TutoriasContext db = new TutoriasContext())
+            {
+                try
+                {
+                    var getUsuario = db.Usuarios.Where(x => x.User == Usuario).First();
+                    getUsuario.Pass = General.cifrarDatos(Pass);
+                    db.SaveChanges();
+                    return "Contraseña cambiada con exito";
+                }
+                catch (Exception)
+                {
+                    return "Tuvimos un problema para poder cambiar tu contraseña";
+                }
+            }
+        }
     }
 }
