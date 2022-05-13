@@ -154,5 +154,29 @@ namespace Titulacion.Clases
             }
         }
 
+        public string[] AlumnoConfig() {
+            using (TutoriasContext db = new TutoriasContext()) {
+                var getAccount = db.Usuarios.Where(x => x.User == generic.Boleta).First();
+                var getAlumno = db.Alumno.Where(x => x.IdUsuario == getAccount.IdUsuario).First();
+                string[] info = { getAlumno.Nombre +" " + getAlumno.ApellidoPat + " " + getAlumno.ApellidoMat, getAlumno.Correo, getAlumno.Grupo };
+                return info;
+            }
+        }
+        public string UpdatePassAlumno(string Boleta, string Pass) {
+            using (TutoriasContext db = new TutoriasContext()) {
+                try
+                {
+                    var getUsuario = db.Usuarios.Where(x => x.User == Boleta).First();
+                    getUsuario.Pass = General.cifrarDatos(Pass);
+                    db.SaveChanges();
+                    return "Contraseña cambiada con exito";
+                }
+                catch (Exception)
+                {
+                    return "Tuvimos un problema para poder cambiar tu contraseña";
+                }
+            }
+        }
+
     }
 }
