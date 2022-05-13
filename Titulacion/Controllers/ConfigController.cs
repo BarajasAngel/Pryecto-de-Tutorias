@@ -50,7 +50,9 @@ namespace Titulacion.Controllers
         }
         [HttpPost]
         public IActionResult EmailProfesor(string Usuario, string Correo) {
-            return View();
+            ViewBag.Error = user.UpdateEmailProfe(Usuario, Correo);
+            ViewBag.Bool = true;
+            return RedirectToAction("Profesor");
         }
     }
 }
