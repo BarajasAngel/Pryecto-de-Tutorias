@@ -172,6 +172,26 @@ namespace Titulacion.Clases
                 }
             }
         }
+        public string UpdateEmailAlumno(string Boleta, string Correo) {
+            using (TutoriasContext db = new TutoriasContext())
+            {
+                try
+                {
+                    var getUsuario = db.Usuarios.Where(x => x.User == Boleta).First();
+                    var getAlumno = db.Alumno.Where(x => x.IdUsuario == getUsuario.IdUsuario).First();
+
+                    CorreoCLS enviar = new CorreoCLS(Correo);                    
+
+                    getAlumno.Correo = Correo;
+                    db.SaveChanges();
+                    return enviar.smtpCorreo();
+                }
+                catch (Exception)
+                {
+                    return "Tuvimos un problema para poder cambiar tu Correo";
+                }
+            }
+        }
         public string[] ProfeConfig() { 
             using(TutoriasContext db = new TutoriasContext()){
                 var getAccount = db.Usuarios.Where(x => x.User == generic.Boleta).First();

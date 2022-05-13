@@ -3,7 +3,16 @@
     ViewData["Title"] = "Alumno";
     Layout = "~/Views/Shared/_LayaoutAlumno.cshtml";
 }
-
+@if (@ViewBag.Bool)
+{
+<div class="alert alert-warning alert-dismissible fade show" role="alert">    
+    <div>
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        @ViewBag.Error
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>    
+}
 <div class="container h-100">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-12">
@@ -19,40 +28,72 @@
             Grupo: @ViewBag.Grupo 
         </div>
         <div class="col-lg-12">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
                 Cambiar Contraseña
             </button>
-        </div>        
+        </div>     
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal2">
+                Cambiar Correo
+            </button>
+        </div> 
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Contraseña -->
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+        <h5 class="modal-title" id="ModalLabel">Cambiar Contraseña</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form asp-action="UpdatePassAlumno" asp-controller="Config" method="post" id="frmUpdate">
+        <form asp-action="Alumno" asp-controller="Config" method="post" id="frmUpdate">
             <div class="form-gruop">
                 <label for="Boleta" class="form-label">Boleta: </label>
                 <input class="form-control" type="text" name="Boleta" id="Boleta" value="@ViewBag.Boleta" readonly/>
             </div>
             <div class="form-gruop">
                 <label for="Contra1" class="form-label" >Contraseña: </label>
-                <input class="form-control" type="password" name="Pass" id="Contra1" value="" />
+                <input class="form-control" type="password" name="Pass" id="Contra1" required />
             </div>
             <div class="form-gruop">
                 <label for="Contra2" class="form-label">Confirmar Contreaseña: </label>
-                <input class="form-control" type="password" name="Pass2" id="Contra2" value="" />
+                <input class="form-control" type="password" name="Pass2" id="Contra2" required />
             </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onclick="submit()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Correo -->
+<div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="Modal2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Cambiar Contraseña</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form asp-action="EmailAlumno" asp-controller="Config" method="post" id="frmUpdateEmail">
+            <div class="form-gruop">
+                <label for="Boleta" class="form-label">Boleta: </label>
+                <input class="form-control" type="text" name="Boleta" id="Boleta" value="@ViewBag.Boleta" readonly/>
+            </div>
+            <div class="form-gruop">
+                <label for="Correo" class="form-label" >Correo: </label>
+                <input class="form-control" type="text" name="Correo" id="Correo" required />
+            </div>            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="submitEmail()">Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -67,6 +108,12 @@
             if(contra1 == contra2){
                 frmUpdate.submit();
             }
+        }
+    }
+    function submitEmail(){
+        var Correo = document.getElementById("Correo").value;
+        if(Correo != ""){
+            frmUpdateEmail.submit();
         }
     }
 </script>
