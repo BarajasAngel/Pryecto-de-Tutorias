@@ -37,9 +37,8 @@ namespace Titulacion.Controllers
         public FileResult Comprobante()
         {
             ComprobanteCLS compro = new ComprobanteCLS();
-            MemoryStream documento = compro.GenerarComprobante();
-            //documento.Seek(0, SeekOrigin.Begin);
-            return File(documento.ToArray(), "application/pdf");
+            FileStream documento =  compro.GenerarComprobante();
+            return File(documento, "application/pdf");
         }
         [HttpGet]
         public IActionResult InicioProfesor() {
