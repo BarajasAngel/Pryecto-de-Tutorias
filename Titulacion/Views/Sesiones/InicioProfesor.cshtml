@@ -1,14 +1,14 @@
 ﻿
 @{
-    ViewData["Title"] = "InicioProfesor";
+    Layout = "~/Views/Shared/_LayaoutProfesor.cshtml"; 
 }
 
 <h1>Bienvenido profesor</h1>
 <!--
     Tabla Alumnos
 -->
-<table>
-    <thead>
+<table id="myTable" class="table table-striped table-hover">
+    <thead class="thead-pantone">
         <tr>
             <th>
                 Nombre:
@@ -32,26 +32,4 @@
         }
     </tbody>
 </table>
-<!--
-    Tabla Grupos
--->
-@*<table>
-    <thead>
-        <tr>
-            <th>
-                Grupos
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewBag.Lista)
-        {
-            <tr>
-                <td>
-                    @item.Gropos
-                </td>   
-            </tr>
-        }       
-    </tbody>
-</table>*@
 

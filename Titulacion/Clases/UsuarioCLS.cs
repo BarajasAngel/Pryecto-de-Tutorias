@@ -146,14 +146,13 @@ namespace Titulacion.Clases
                     var alm = db.Alumno.Where(x => x.IdAlumno == inscri[i].IdAlumno).First();
                     alumno.Nombre = alm.Nombre;
                     alumno.ApellidoPat = alm.ApellidoPat;
-                    alumno.ApellidoMat = alm.ApellidoMat;                    
+                    alumno.ApellidoMat = alm.ApellidoMat;
+                    alumno.Grupo = alm.Grupo;
                     alumnosRegistrados.Add(alumno);
                 }
                 return alumnosRegistrados;
             }
         }
-        public List<Grupos> listaGrupos() {
-            return null;
-        }
+
     }
 }

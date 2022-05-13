@@ -43,8 +43,7 @@ namespace Titulacion.Controllers
         }
         [HttpGet]
         public IActionResult InicioProfesor() {
-            List<Alumno> alumno = obj.listaAlumnos();
-            ViewBag.Lista = obj.listaGrupos();
+            List<Alumno> alumno = obj.listaAlumnos();            
             return View(alumno);
         }
 

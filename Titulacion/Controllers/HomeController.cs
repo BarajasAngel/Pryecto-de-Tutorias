@@ -37,6 +37,7 @@ namespace Titulacion.Controllers
                 case 2:
                     return RedirectToAction("InicioAlumno", "Sesiones");
                 default:
+                    ViewBag.Error = "Tu usuario y/o contraseña son incorrectos";
                     return View();
             }
         }
