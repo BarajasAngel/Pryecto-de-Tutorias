@@ -8,10 +8,10 @@ namespace Titulacion.Clases
     public class UsuarioCLS
     {
         private static bool tutoria;
-        private static string nombre;        
+        private static string nombre;
 
         public bool Tutoria { get => tutoria; set => tutoria = value; }
-        public string Nombre { get => nombre; set => nombre = value; }        
+        public string Nombre { get => nombre; set => nombre = value; }
 
         General generic = new General();
 
@@ -23,14 +23,14 @@ namespace Titulacion.Clases
                 try
                 {
                     var user = db.Usuarios.Where(x => x.User == userReci.User && x.Pass == pass).First();
-                   
+
                     if (!user.Visibilidad)
                     {
                         return -1;
                     }
                     if (Convert.ToInt32(user.Tipo) == 1)
                     {
-                        generic.Boleta = user.User;                        
+                        generic.Boleta = user.User;
                     }
                     if (Convert.ToInt32(user.Tipo) == 2)
                     {
@@ -49,25 +49,27 @@ namespace Titulacion.Clases
             }
 
         }
-        public List<Profesor> listaProfesores() {
+        public List<Profesor> listaProfesores()
+        {
             using (TutoriasContext db = new TutoriasContext())
             {
                 var getUser = db.Usuarios.Where(x => x.User == generic.Boleta).First();
                 var getGrupo = db.Alumno.Where(x => x.IdUsuario == getUser.IdUsuario).First().Grupo;
                 var listaProfesor = (from prof in db.Profesor
                                      where prof.Grupo == getGrupo
-                                    select new Profesor
-                                    {
-                                        Nombre = prof.Nombre,
-                                        ApellidoPat = prof.ApellidoPat,
-                                        ApellidoMat = prof.ApellidoMat,
-                                        HorasTutoria = prof.HorasTutoria,                                     
-                                    }).ToList();
+                                     select new Profesor
+                                     {
+                                         Nombre = prof.Nombre,
+                                         ApellidoPat = prof.ApellidoPat,
+                                         ApellidoMat = prof.ApellidoMat,
+                                         HorasTutoria = prof.HorasTutoria,
+                                     }).ToList();
                 return listaProfesor;
             }
-            
+
         }
-        public string registro(string boleta, string correo) {
+        public string registro(string boleta, string correo)
+        {
             try
             {
                 using (TutoriasContext db = new TutoriasContext())
@@ -79,7 +81,8 @@ namespace Titulacion.Clases
                     {
                         return "Esta boleta ya cuenta con un correo asociado";
                     }
-                    else {
+                    else
+                    {
                         try
                         {
                             var getCorreo = db.Alumno.Where(x => x.Correo == correo).First();
@@ -89,19 +92,25 @@ namespace Titulacion.Clases
                         {
                             getAlumno.Correo = correo;
                             id.Visibilidad = true;
-                            db.SaveChanges();
+
                             CorreoCLS enviar = new CorreoCLS(correo);
-                            return enviar.smtpCorreo();
+                            string contraseña = enviar.Generar_Contraseña();
+
+                            id.Pass = General.cifrarDatos(contraseña);
+
+                            db.SaveChanges();
+                            return enviar.smtpCorreo(contraseña);
                         }
-                    }                                        
+                    }
                 }
             }
             catch (Exception)
             {
                 return "Hubo un error";
-            }            
+            }
         }
-        public bool RegistrarTutor(string boleta, string nomProfe) {
+        public bool RegistrarTutor(string boleta, string nomProfe)
+        {
             using (TutoriasContext db = new TutoriasContext())
             {
                 //Primero se debe obtener al alumno y al profesor, despues al alumno se le habilitara la tutoria
@@ -110,7 +119,7 @@ namespace Titulacion.Clases
                 //Para despues crearse un registro de la tabla inscripcion con los datos del alumno y profesor
                 //En el registro de inscripcion se generara un folio Aleatorio al momento
 
-                 try
+                try
                 {
                     Inscripcion inscrip = new Inscripcion();
                     var us = db.Usuarios.Where(x => x.User == boleta).First();
@@ -125,7 +134,7 @@ namespace Titulacion.Clases
                     inscrip.Folio = General.Folio(alm);
                     db.Inscripcion.Add(inscrip);
                     db.SaveChanges();
-                     return true;
+                    return true;
                 }
                 catch (Exception)
                 {
@@ -133,7 +142,8 @@ namespace Titulacion.Clases
                 }
             }
         }
-        public List<Alumno> listaAlumnos() {
+        public List<Alumno> listaAlumnos()
+        {
             using (TutoriasContext db = new TutoriasContext())
             {
                 var idProfesor = db.Usuarios.Where(x => x.User == generic.Boleta).First().IdUsuario;
@@ -143,22 +153,26 @@ namespace Titulacion.Clases
                 Alumno alumno = new Alumno();
                 for (int i = 0; i < inscri.Count; i++)
                 {
-                    var alm = db.Alumno.Where(x => x.IdAlumno == inscri[i].IdAlumno).First();          
+                    var alm = db.Alumno.Where(x => x.IdAlumno == inscri[i].IdAlumno).First();
                     alumnosRegistrados.Add(alm);
                 }
                 return alumnosRegistrados;
             }
         }
-        public string[] AlumnoConfig() {
-            using (TutoriasContext db = new TutoriasContext()) {
+        public string[] AlumnoConfig()
+        {
+            using (TutoriasContext db = new TutoriasContext())
+            {
                 var getAccount = db.Usuarios.Where(x => x.User == generic.Boleta).First();
                 var getAlumno = db.Alumno.Where(x => x.IdUsuario == getAccount.IdUsuario).First();
-                string[] info = { getAlumno.Nombre +" " + getAlumno.ApellidoPat + " " + getAlumno.ApellidoMat, getAlumno.Correo, getAlumno.Grupo };
+                string[] info = { getAlumno.Nombre + " " + getAlumno.ApellidoPat + " " + getAlumno.ApellidoMat, getAlumno.Correo, getAlumno.Grupo };
                 return info;
             }
         }
-        public string UpdatePassAlumno(string Boleta, string Pass) {
-            using (TutoriasContext db = new TutoriasContext()) {
+        public string UpdatePassAlumno(string Boleta, string Pass)
+        {
+            using (TutoriasContext db = new TutoriasContext())
+            {
                 try
                 {
                     var getUsuario = db.Usuarios.Where(x => x.User == Boleta).First();
@@ -172,7 +186,8 @@ namespace Titulacion.Clases
                 }
             }
         }
-        public string UpdateEmailAlumno(string Boleta, string Correo) {
+        public string UpdateEmailAlumno(string Boleta, string Correo)
+        {
             using (TutoriasContext db = new TutoriasContext())
             {
                 try
@@ -180,7 +195,7 @@ namespace Titulacion.Clases
                     var getUsuario = db.Usuarios.Where(x => x.User == Boleta).First();
                     var getAlumno = db.Alumno.Where(x => x.IdUsuario == getUsuario.IdUsuario).First();
 
-                    CorreoCLS enviar = new CorreoCLS(Correo);                    
+                    CorreoCLS enviar = new CorreoCLS(Correo);
 
                     getAlumno.Correo = Correo;
                     db.SaveChanges();
@@ -192,19 +207,22 @@ namespace Titulacion.Clases
                 }
             }
         }
-        public string[] ProfeConfig() { 
-            using(TutoriasContext db = new TutoriasContext()){
+        public string[] ProfeConfig()
+        {
+            using (TutoriasContext db = new TutoriasContext())
+            {
                 var getAccount = db.Usuarios.Where(x => x.User == generic.Boleta).First();
                 var getProfesor = db.Profesor.Where(x => x.IdUsuario == getAccount.IdUsuario).First();
-                string[] info = { getProfesor.Nombre + " " + 
+                string[] info = { getProfesor.Nombre + " " +
                         getProfesor.ApellidoPat + " " + getProfesor.ApellidoMat, getProfesor.Correo,
-                        getProfesor.Grupo, getProfesor.HorasTutoria.ToString(), 
+                        getProfesor.Grupo, getProfesor.HorasTutoria.ToString(),
                         getProfesor.HorasTotales.ToString()};
                 return info;
 
             }
         }
-        public string UpdatePassProfe(string Usuario, string Pass) {
+        public string UpdatePassProfe(string Usuario, string Pass)
+        {
             using (TutoriasContext db = new TutoriasContext())
             {
                 try
