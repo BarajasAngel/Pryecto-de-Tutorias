@@ -38,7 +38,7 @@ namespace Titulacion.Controllers
         public IActionResult EliminarAlumno(string idAlumno) {
             return RedirectToAction("InicioAlumno");
         }
-        [Authorize(Roles = "Profesor")]
+        [Authorize(Roles = "Alumno")]
         public FileResult Comprobante()
         {
             ComprobanteCLS compro = new ComprobanteCLS();
@@ -46,7 +46,7 @@ namespace Titulacion.Controllers
             return File(documento, "application/pdf");
         }
         [HttpGet]
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "Profesor")]
         public IActionResult InicioProfesor() {
             List<Alumno> alumno = obj.listaAlumnos();            
             return View(alumno);
