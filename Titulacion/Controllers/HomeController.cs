@@ -35,17 +35,18 @@ namespace Titulacion.Controllers
             switch (user.Validar(userReci))
             {
                 case 0:
-
-                    var claimsAlumno = new List<Claim>
+                    var claimsAdmin = new List<Claim>
                     {
                         new Claim("Usuario", userReci.User),
                         new Claim("Contraseña", userReci.Pass),
-                        new Claim(ClaimTypes.Role, "0")
+                        
                     };
 
-                    var claimsIdentityAlumno = new ClaimsIdentity(claimsAlumno, CookieAuthenticationDefaults.AuthenticationScheme);
+                    claimsAdmin.Add(new Claim(ClaimTypes.Role, "Administrador"));
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentityAlumno));
+                    var claimsIdentityAdmin = new ClaimsIdentity(claimsAdmin, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentityAdmin));
 
                     return RedirectToAction("Alumnos", "Administrador");                    
                 case 1:
@@ -53,22 +54,25 @@ namespace Titulacion.Controllers
                     {
                         new Claim("Usuario", userReci.User),
                         new Claim("Contraseña", userReci.Pass),
-                        new Claim(ClaimTypes.Role, "2")
+                        new Claim(ClaimTypes.Role, "Profesor")
                     };
                     var claimsIdentityProfesor = new ClaimsIdentity(claimsProfe, CookieAuthenticationDefaults.AuthenticationScheme);
 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentityProfesor));
                     return RedirectToAction("InicioProfesor", "Sesiones");
                 case 2:
-                    var claimsAdmin = new List<Claim>
+
+                    var claimsAlumno = new List<Claim>
                     {
                         new Claim("Usuario", userReci.User),
                         new Claim("Contraseña", userReci.Pass),
-                        new Claim(ClaimTypes.Role, "1")
+                        new Claim(ClaimTypes.Role, "Alumno")
                     };
-                    var claimsIdentityAdmin = new ClaimsIdentity(claimsAdmin, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentityAdmin));
+                    var claimsIdentityAlumno = new ClaimsIdentity(claimsAlumno, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentityAlumno));
+
                     return RedirectToAction("InicioAlumno", "Sesiones");
                 default:
                     ViewBag.Bool = true;

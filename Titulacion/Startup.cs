@@ -31,6 +31,7 @@ namespace Titulacion
                     option.ExpireTimeSpan = TimeSpan.FromMinutes(30);                    
                     option.AccessDeniedPath = "/Home/Denegado";
                 });
+            services.AddAuthorization();
             services.AddSession();
         }
 
@@ -52,8 +53,9 @@ namespace Titulacion
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+            
 
             app.UseSession();
 

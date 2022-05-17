@@ -12,13 +12,14 @@ using Titulacion.Models;
 
 namespace Titulacion.Controllers
 {    
+    [Authorize]
     public class SesionesController : Controller
     {
         UsuarioCLS obj = new UsuarioCLS();
         General generic = new General();
         
         [HttpGet]
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "Alumno")]
         public IActionResult InicioAlumno()
         {
             List<Profesor> listaProfesor = obj.listaProfesores();
@@ -37,7 +38,7 @@ namespace Titulacion.Controllers
         public IActionResult EliminarAlumno(string idAlumno) {
             return RedirectToAction("InicioAlumno");
         }
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "Profesor")]
         public FileResult Comprobante()
         {
             ComprobanteCLS compro = new ComprobanteCLS();

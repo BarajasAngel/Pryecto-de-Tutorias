@@ -10,7 +10,7 @@ namespace Titulacion.Controllers
         General generic = new General();
         UsuarioCLS user = new UsuarioCLS();
         [HttpGet]
-        [Authorize(Roles = "2")]
+        [Authorize(Roles = "Alumno")]
         public IActionResult Alumno()
         {
             ViewBag.Boleta = generic.Boleta;
@@ -37,7 +37,7 @@ namespace Titulacion.Controllers
             return RedirectToAction("Alumno");
         }
         [HttpGet]
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "Profesor")]
         public IActionResult Profesor() {
             ViewBag.Info = new UsuarioCLS().ProfeConfig();
             ViewBag.Usuario = generic.Boleta;

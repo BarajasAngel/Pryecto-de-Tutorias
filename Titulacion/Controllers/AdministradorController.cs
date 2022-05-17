@@ -5,7 +5,7 @@ using Titulacion.Models;
 
 namespace Titulacion.Controllers
 {
-    [Authorize(Roles = "0")]
+    [Authorize(Roles = "Administrador")]
     public class AdministradorController : Controller
     {
         AdministradorCLS obj = new AdministradorCLS();
