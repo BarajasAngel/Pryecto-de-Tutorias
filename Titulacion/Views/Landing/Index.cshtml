@@ -11,7 +11,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
     />
-    <title>Index</title>
+    <link rel="stylesheet" href="~/css/carousel.css/">
+    <title>Inicio</title>
   </head>
   <body>
     <header>
@@ -38,7 +39,7 @@
                   ><i class="bi bi-person-fill"></i> Iniciar Sesion</a>
               </li>
               <li>
-                <div class="nav-link">|</div>
+                <span class="nav-link">|</span>
               </li>
               <li class="nav-item">
                 <a class="nav-link" asp-action="Register" asp-controller="Home"
@@ -50,64 +51,115 @@
       </nav>
     </header>
     <main>
-     <div class="carousel">
-          <div
-        id="carouselExampleControls"
-        class="carousel slide carousel-fade"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="~/img/1.jpg" class="d-block w-100" width:"50" heigth:"auto"  alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/2.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/3.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/4.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/5.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/6.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/7.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/8.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/9.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
-            <div class="carousel-item">
-              <img src="~/img/10.jpg" class="d-block w-100" width:"50" heigth:"auto" alt="Cecyt 13" />
-            </div>                    
+      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>          
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+               <img class="bd-placeholder-img" width="100%" height="100%"  src="~/img/2.jpg" alt="Cecyt13" />
+               <rect width="100%" height="100%" fill="#777"/>
+          </div>                    
+          <div class="carousel-item">
+               <img class="bd-placeholder-img" width="100%" height="100%"  src="~/img/3.jpg" alt="Cecyt13" />
+               <rect width="100%" height="100%" fill="#777"/>
+          </div>          
+          <div class="carousel-item">
+               <img class="bd-placeholder-img" width="100%" height="100%"  src="~/img/4.jpg" alt="Cecyt13" />
+               <rect width="100%" height="100%" fill="#777"/>
+          </div>          
+          <div class="carousel-item">
+               <img class="bd-placeholder-img" width="100%" height="100%"  src="~/img/5.jpg" alt="Cecyt13" />
+               <rect width="100%" height="100%" fill="#777"/>
+          </div>          
+          <div class="carousel-item">
+               <img class="bd-placeholder-img" width="100%" height="100%"  src="~/img/9.jpg" alt="Cecyt13" />
+               <rect width="100%" height="100%" fill="#777"/>
+          </div>          
+          <div class="carousel-item">
+               <img class="bd-placeholder-img" width="100%" height="100%"  src="~/img/10.jpg" alt="Cecyt13" />
+               <rect width="100%" height="100%" fill="#777"/>
+          </div>          
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-     </div>
+    
+    
+      <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+    
+      <div class="container marketing mt-4">
+    
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-6">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="~/img/IPN.png" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+    
+            <h2>Instituto Politecnico Nacional</h2>
+            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+            
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-6">
+            <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="~/img/Cecyt13.jpg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+    
+            <h2>Centro de Estudios Cientificos y Tecnolgicos N° 13</h2>
+            <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>            
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+    
+    
+        <!-- START THE FEATURETTES -->
+    
+        <hr class="featurette-divider">
+    
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Mision</h2>
+            <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+          </div>
+          <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="~/img/Mision.jpg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"/>
+    
+          </div>
+        </div>
+    
+        <hr class="featurette-divider">
+    
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Vision</h2>
+            <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="~/img/Vision.jpg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"/>
+    
+          </div>
+        </div>  
+    
+        <hr class="featurette-divider">
+    
+        <!-- /END THE FEATURETTES -->
+    
+      </div><!-- /.container -->
+    
+    
+      <!-- FOOTER -->
+      <footer class="container bg-black">
+        <p class="float-end"><a href="#">Regresar al principio</a></p>        
+      </footer>
     </main>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
