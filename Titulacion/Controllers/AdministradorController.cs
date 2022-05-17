@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Titulacion.Clases;
 using Titulacion.Models;
 
 namespace Titulacion.Controllers
 {
+    [Authorize(Roles = "0")]
     public class AdministradorController : Controller
     {
         AdministradorCLS obj = new AdministradorCLS();

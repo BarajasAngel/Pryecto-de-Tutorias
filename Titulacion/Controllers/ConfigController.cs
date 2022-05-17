@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Titulacion.Clases;
 
 namespace Titulacion.Controllers
 {
+
     public class ConfigController : Controller
     {
         General generic = new General();
         UsuarioCLS user = new UsuarioCLS();
         [HttpGet]
+        [Authorize(Roles = "2")]
         public IActionResult Alumno()
         {
             ViewBag.Boleta = generic.Boleta;
@@ -34,6 +37,7 @@ namespace Titulacion.Controllers
             return RedirectToAction("Alumno");
         }
         [HttpGet]
+        [Authorize(Roles = "1")]
         public IActionResult Profesor() {
             ViewBag.Info = new UsuarioCLS().ProfeConfig();
             ViewBag.Usuario = generic.Boleta;

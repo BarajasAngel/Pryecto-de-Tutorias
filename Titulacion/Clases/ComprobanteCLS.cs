@@ -63,7 +63,7 @@ namespace Titulacion.Clases
             pdfDoc.Add(Chunk.NEWLINE);
             PdfPTable tabl1 = new PdfPTable(2);
             tabl1.WidthPercentage = 100;
-            PdfPCell fila1 = new PdfPCell(new Phrase("Alumno: " + alm.Nombre + " " + alm.ApellidoPat + " " + alm.ApellidoMat, letra));
+            PdfPCell fila1 = new PdfPCell(new Phrase("Alumno: " + alm.ApellidoPat + " " + alm.ApellidoMat + " " + alm.Nombre, letra));
             fila1.BorderWidth = 0;
             tabl1.AddCell(fila1);
             PdfPCell fila2 = new PdfPCell(new Phrase("Boleta:" + generic.Boleta, letra));
@@ -73,7 +73,7 @@ namespace Titulacion.Clases
 
             PdfPTable tabl2 = new PdfPTable(2);
             tabl2.WidthPercentage = 100;
-            PdfPCell fila11 = new PdfPCell(new Phrase("Profesor: " + prof.Nombre + " " + prof.ApellidoPat + " " + prof.ApellidoMat, letra));
+            PdfPCell fila11 = new PdfPCell(new Phrase("Profesor: " + prof.ApellidoPat + " " + prof.ApellidoMat + " " + prof.Nombre, letra));
             fila11.BorderWidth = 0;
             PdfPCell fila22 = new PdfPCell(new Phrase("Grupo:" + alm.Grupo, letra));
             fila22.BorderWidth = 0;

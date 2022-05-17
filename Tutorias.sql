@@ -73,7 +73,7 @@ FROM Usuarios as U
 INNER JOIN Alumno as A
 ON U.Id_Usuario = A.Id_Usuario;
 
-SELECT al.Nombre, al.Apellido_Mat, al.Apellido_Mat
-FROM Inscripcion AS i
-INNER JOIN Alumno AS al
-ON al.Id_Alumno = i.Id_Alumno WHERE i.Id_Profesor = 5
+--SELECT al.Nombre, al.Apellido_Mat, al.Apellido_Mat
+--FROM Inscripcion AS i
+--INNER JOIN Alumno AS al
+--ON al.Id_Alumno = i.Id_Alumno WHERE i.Id_Profesor = 5

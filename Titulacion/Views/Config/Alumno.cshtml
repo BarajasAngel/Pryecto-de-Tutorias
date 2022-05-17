@@ -13,9 +13,11 @@
     </div>
 </div>    
 }
-<div class="container h-100">
-    <div class="row d-flex justify-content-center">
-        <div class="col-lg-12">
+
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div>
+            <div class="col-lg-12">
             Boleta: @ViewBag.Boleta 
         </div>
         <div class="col-lg-12">
@@ -31,14 +33,14 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
                 Cambiar Contraseña
             </button>
-        </div>     
-        <div class="col-lg-12">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal2">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal2">
                 Cambiar Correo
             </button>
-        </div> 
+        </div>        
+        </div>
     </div>
 </div>
+
 
 <!-- Modal Contraseña -->
 <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
